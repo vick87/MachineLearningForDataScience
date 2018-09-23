@@ -9,7 +9,7 @@ from sklearn.metrics import classification_report
 import sklearn.metrics
 import pydotplus
 
-#Set up the desired working tree here
+#Set up the desired working tree here. Pls use a \ to escape characters here.
 os.chdir("C:\\Users\\lenovo\\Desktop\\MachineLearningWithDataAnalysis\\DecisionTree")
 
 #Reading the input
