@@ -10,7 +10,8 @@ import sklearn.metrics
 import pydotplus
 
 #Set up the desired working tree here. Pls use a \ to escape characters here.
-os.chdir("C:\\Users\\lenovo\\Desktop\\MachineLearningWithDataAnalysis\\DecisionTree")
+os.chdir("C:\\Users\\v-vamer\\Desktop\\ML Learning\\MachineLearningForDataAnalysis\\MachineLearningForDataScience\\DecisionTree")
+#os.chdir("C:\\Users\\lenovo\\Desktop\\MachineLearningWithDataAnalysis\\DecisionTree")
 
 #Reading the input
 TreeData = pd.read_csv('tree_addhealth.csv')
@@ -22,12 +23,15 @@ Updated dataset size of 4575 records out of 6504 records.
 CleanTreeData = TreeData.dropna()
 CleanTreeData.shape[0]
 
-PredictDataSet = CleanTreeData[['BIO_SEX','HISPANIC','WHITE','BLACK','NAMERICAN','ASIAN',
-'age','ALCEVR1','ALCPROBS1','marever1','cocever1','inhever1','cigavail','DEP1',
-'ESTEEM1','VIOL1','PASSIST','DEVIANT1','SCHCONN1','GPA1','EXPEL1','FAMCONCT','PARACTV',
-'PARPRES']]
+#PredictDataSet = CleanTreeData[['BIO_SEX','HISPANIC','WHITE','BLACK','NAMERICAN','ASIAN',
+#'age','ALCEVR1','ALCPROBS1','marever1','cocever1','inhever1','cigavail','DEP1',
+#'ESTEEM1','VIOL1','PASSIST','DEVIANT1','SCHCONN1','GPA1','EXPEL1','FAMCONCT','PARACTV',
+#'PARPRES']]
 
-ResponseVariable = CleanTreeData['TREG1']
+#Working with 'everusedinhalants' and 'ever used marijuana'
+PredictDataSet = CleanTreeData[['inhever1','marever1']]
+
+ResponseVariable = CleanTreeData.TREG1
 
 """Splitting the trainng and test dataset. 
 Test DS = 40% of total and remaining as the Training DS.
