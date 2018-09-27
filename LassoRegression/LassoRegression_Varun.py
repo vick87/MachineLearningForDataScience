@@ -19,7 +19,7 @@ TreeDataClean['MALE']= TreeDataClean['BIO_SEX'].map(GenderRecode)
 #Load the Predictor variables
 #select predictor variables and target variable as separate data sets  
 PredictorVariables= TreeDataClean[['MALE','HISPANIC','WHITE','BLACK','NAMERICAN','ASIAN',
-'AGE','ALCEVR1','ALCPROBS1','MAREVER1','COCEVER1','INHEVER1','CIGAVAIL','DEP1',
+'AGE','ALCEVR1','ALCPROBS1','MAREVER1','COCEVER1','INHEVER1','CIGAVAIL','DEP1', 
 'ESTEEM1','VIOL1','PASSIST','DEVIANT1','GPA1','EXPEL1','FAMCONCT','PARACTV',
 'PARPRES']]
 
@@ -53,12 +53,17 @@ FinalPredictors['PARPRES'] = preprocessing.scale(FinalPredictors['PARPRES'].asty
 
 #Splitting the data into test and training data
 pred_train,pred_test,tar_train,tar_test = train_test_split(FinalPredictors,TargetVariable,test_size=.3,random_state=123)
-
+pred_train.shape[0]
+pred_test.shape[0]
+tar_train.shape[0]
+tar_test.shape[0]
 #Cretaing the Model
 LassoRegModel = LassoLarsCV(cv=10,precompute=False).fit(pred_train,tar_train)
 
 # print variable names and regression coefficients
-dict(zip(FinalPredictors.columns, LassoRegModel.coef_))
+PredictorCoefficients=dict(zip(FinalPredictors.columns, LassoRegModel.coef_))
+import operator
+PCoeff_Sorted = sorted(PredictorCoefficients.items(),key=operator.itemgetter(1),reverse=True)
 
 # plot coefficient progression
 m_log_alphas = -np.log10(LassoRegModel.alphas_)
